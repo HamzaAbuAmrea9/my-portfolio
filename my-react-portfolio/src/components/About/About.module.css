@@ -1,0 +1,149 @@
+/* src/components/About/About.module.css */
+.aboutSection {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-body);
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.aboutContentWrapper {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.aboutImageContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+.profileImageInAbout {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 12px;
+  z-index: 10;
+  position: relative;
+  object-fit: cover;
+}
+.blob { position: absolute; z-index: 1; opacity: 1; }
+.blob1 { width: 350px; height: 330px; background-color: var(--color-primary); border-radius: 55% 45% 65% 35% / 45% 55% 45% 55%; transform: translate(-25%, -20%) rotate(10deg); }
+.blob2 { width: 310px; height: 290px; background-color: var(--color-secondary-blob); border-radius: 40% 60% 50% 50% / 50% 50% 60% 40%; transform: translate(20%, 25%) rotate(-12deg); }
+
+.aboutTextContainer {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-body);
+}
+.aboutTextContainer p { margin-bottom: 1.25rem; }
+.aboutTextContainer p:last-child { margin-bottom: 0; }
+
+
+/* --- NEW STYLES FOR SKILL CATEGORIES --- */
+
+.skillsHeader {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.skillCategoriesGrid {
+  display: grid;
+  /* This creates a responsive grid that fits as many columns as possible */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.skillCategoryCard {
+  background-color: var(--color-surface, var(--color-bg)); /* Use a surface color if defined, otherwise fallback to bg */
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skillCategoryCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  /* Optional: a specific shadow for dark mode */
+  /* --dark-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
+}
+
+.categoryIcon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.25rem;
+  object-fit: contain;
+}
+
+.categoryTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.skillsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.skillTag {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-body);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px; /* Pill shape */
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+
+/* --- RESPONSIVE STYLES (Keep these at the end) --- */
+@media (max-width: 992px) {
+    .aboutContentWrapper { gap: 2.5rem; grid-template-columns: 1fr; }
+    .aboutImageContainer { margin-bottom: 2.5rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .profileImageInAbout { max-width: 250px; }
+    .blob1 { width: 300px; height: 280px; } .blob2 { width: 260px; height: 240px; }
+    /* Grid will be 2 columns here due to auto-fit */
+}
+
+@media (max-width: 768px) {
+    .aboutSection { padding-top: 3rem; padding-bottom: 3rem; }
+    .sectionTitle { font-size: 2rem; } .sectionSubtitle { margin-bottom: 2.5rem; }
+    .aboutContentWrapper { text-align: center; } .aboutImageContainer { margin-bottom: 2rem; }
+    .aboutTextContainer { text-align: left; }
+    /* Grid will be 1 or 2 columns here due to auto-fit */
+}

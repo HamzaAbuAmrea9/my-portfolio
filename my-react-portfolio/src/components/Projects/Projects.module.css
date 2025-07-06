@@ -1,0 +1,160 @@
+/* src/components/Projects/Projects.module.css */
+.projectsSection {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: var(--color-bg);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-body);
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem;
+  line-height: 1.6;
+}
+
+/* Container for all project cards */
+.projectsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* --- NEW STYLE for the "See All" button container --- */
+.viewMoreContainer {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+/* The main project card layout */
+.projectCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.projectImageContainer {
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background-color: var(--color-border);
+}
+/* This style applies whether the container is a link or not */
+.projectImageContainer img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.projectImageContainer a:hover img {
+  transform: scale(1.05);
+}
+.projectImageContainer a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.projectInfo { text-align: left; }
+
+.projectTitle {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: 1rem;
+}
+
+.projectDescription {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text-body);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-body);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.ctaButton:hover {
+  background-color: var(--color-primary-darker);
+  transform: translateY(-2px);
+}
+
+/* Alternating Layout for featured projects */
+.projectCard:nth-child(even) .projectImageContainer { order: 2; }
+.projectCard:nth-child(even) .projectInfo { order: 1; }
+
+
+/* === RESPONSIVE STYLES === */
+@media (max-width: 992px) {
+  .projectCard {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+  .projectTitle { font-size: 1.4rem; }
+  .projectCard:nth-child(even) .projectImageContainer,
+  .projectCard:nth-child(even) .projectInfo {
+    order: initial;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectsSection { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .sectionTitle { font-size: 2rem; }
+  .sectionSubtitle { margin-bottom: 3rem; }
+  .projectsList { gap: 3rem; }
+}

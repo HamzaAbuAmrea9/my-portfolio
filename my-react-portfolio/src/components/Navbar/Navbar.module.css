@@ -1,0 +1,180 @@
+/* src/components/Navbar/Navbar.module.css */
+.navbar {
+  background-color: var(--color-bg); /* Semantic variable for background */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: var(--navbar-shadow); /* Semantic variable for shadow */
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 70px; /* Adjust based on your Figma design */
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* This will be constrained by the global .container class's max-width */
+}
+
+.navLogoLink {
+  display: inline-block;
+}
+
+.logoImage {
+  height: 32px; /* Adjust to your logo's height */
+  width: auto;
+  display: block; /* Remove extra space below image if any */
+  /* The actual logo image (light/dark) is switched by JSX, so no specific CSS filter needed here */
+}
+
+/* Fallback if using text logo */
+.logoText {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem; /* Adjust spacing based on Figma */
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-size: 0.95rem; /* Adjust from Figma */
+  font-weight: 500;
+  color: var(--color-text-body); /* Semantic variable */
+  transition: color 0.2s ease-in-out;
+  position: relative;
+  padding: 0.5rem 0.25rem; /* Padding for click area and underline positioning */
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+}
+
+.navLink.active {
+  color: var(--color-primary);
+  font-weight: 600; /* Or other visual distinction for active link */
+}
+
+/* Underline effect for active/hover (optional) */
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Position underline at the bottom of the padding box */
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+.navLink:hover::after,
+.navLink.active::after {
+  width: 100%;
+}
+
+
+.navActions {
+  display: flex;
+  align-items: center;
+}
+
+.themeToggle {
+  width: 56px;
+  height: 28px;
+  background-color: var(--theme-toggle-bg); /* Semantic variable */
+  border-radius: 14px; /* height / 2 */
+  padding: 3px; /* Space for the inner button to move */
+  cursor: pointer;
+  display: flex; /* For align-items if needed, though inner button is absolute */
+  align-items: center;
+  position: relative; /* Crucial for positioning .themeToggleButton and .themeToggleIcons */
+  transition: background-color 0.3s ease;
+  border: 1px solid var(--color-border); /* Semantic variable */
+}
+
+.themeToggleIcons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between; /* Positions sun left, moon right within bounds */
+  align-items: center;
+  padding: 0 6px; /* Padding for icons from the edge of the toggle */
+  font-size: 0.9rem; /* Adjust emoji/icon size */
+  pointer-events: none; /* So icons don't interfere with button click */
+}
+
+.sunIcon,
+.moonIcon {
+  color: var(--theme-toggle-icon); /* Semantic variable */
+  opacity: 0; /* Start transparent */
+  transition: opacity 0.2s ease-in-out 0.1s, color 0.3s ease; /* Slight delay for opacity fade-in */
+  position: absolute; /* Allow precise positioning */
+}
+
+/* Show sun icon when button does NOT have .darkModeActive (Light Mode) */
+.themeToggle:not(.darkModeActive) .sunIcon {
+  opacity: 1;
+  left: 6px; /* Position on the left within .themeToggleIcons padding */
+}
+/* Show moon icon when button HAS .darkModeActive (Dark Mode) */
+.themeToggle.darkModeActive .moonIcon {
+  opacity: 1;
+  right: 6px; /* Position on the right within .themeToggleIcons padding */
+}
+/* Ensure the other icon is definitively hidden */
+.themeToggle:not(.darkModeActive) .moonIcon { opacity: 0; }
+.themeToggle.darkModeActive .sunIcon { opacity: 0; }
+
+
+.themeToggleButton {
+  width: 22px; /* Inner button width */
+  height: 22px; /* Inner button height */
+  background-color: var(--theme-toggle-button); /* Semantic variable */
+  border-radius: 50%;
+  position: absolute; /* Relative to .themeToggle */
+  left: 3px; /* Initial position for light mode (matches .themeToggle padding) */
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2); /* This shadow could also be a semantic variable */
+  z-index: 1; /* Ensures button is above icons */
+}
+
+/* This class is added to the main button in Navbar.jsx when isDarkMode is true */
+.themeToggle.darkModeActive .themeToggleButton {
+  /* toggle_width - button_width - left_padding_of_toggle - right_padding_of_toggle_for_button_to_stop_at */
+  transform: translateX(calc(56px - 22px - 3px - 3px));
+}
+
+
+/* Styles for mobile menu button - add later if needed */
+.mobileMenuButton {
+  display: none; /* Hidden on desktop by default */
+  font-size: 1.8rem;
+  color: var(--color-text-body); /* Semantic variable */
+  /* Add other necessary button reset styles if not globally done */
+}
+
+/* Basic Responsive for Navbar */
+@media (max-width: 768px) {
+  .navMenu {
+    /* Example: Hide menu for mobile - you'll need a hamburger button and state logic to show/hide it */
+    /* display: none; */
+  }
+  .mobileMenuButton {
+    /* Example: Show hamburger button */
+    /* display: block; */
+  }
+}

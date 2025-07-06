@@ -1,0 +1,97 @@
+/* src/components/Certifications/Certifications.module.css */
+.certificationsSection {
+  padding-top: 5rem;
+  padding-bottom: 6rem; /* Extra padding at bottom for pagination dots */
+  background-color: var(--color-section-bg);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+.sectionSubtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-body);
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3.5rem;
+  line-height: 1.6;
+}
+
+.sliderContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.certificateCard {
+  background-color: var(--color-card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Important for consistent card height */
+}
+
+.certificateImage {
+  width: 100%;
+  aspect-ratio: 16 / 11; /* Enforces a consistent shape for all images */
+  object-fit: contain; /* Shows the whole certificate without stretching */
+  background-color: #ffffff; /* White background for certificates */
+  padding: 0.5rem; /* Small padding inside the image area */
+  border-bottom: 1px solid var(--color-border);
+}
+
+.certificateInfo {
+  padding: 1.25rem 1rem;
+  flex-grow: 1; /* Allows this part to take up remaining space */
+}
+
+.certificateTitle {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: 0.25rem;
+}
+
+.certificateSource {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+/* === Custom Swiper Styles === */
+/* This part targets the Swiper elements globally to change their color */
+:global(.swiper-button-prev),
+:global(.swiper-button-next) {
+  color: var(--color-primary) !important;
+  transform: scale(0.8);
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background: var(--color-primary) !important;
+}
+
+:global(.swiper-pagination-bullet) {
+  background-color: var(--color-text-subtle);
+}
+
+@media (max-width: 768px) {
+  .certificationsSection { padding-top: 3.5rem; padding-bottom: 4.5rem; }
+  .sectionTitle { font-size: 2rem; }
+  :global(.swiper-button-prev),
+  :global(.swiper-button-next) {
+    display: none !important; /* Hide arrows on mobile for a cleaner look */
+  }
+}
